@@ -1,0 +1,29 @@
+# Ignore environment config files
+.env
+.env.*
+
+# Ignore AWS credential files
+*.pem
+*.key
+.aws/
+**/aws_credentials
+**/credentials
+**/accessKeys.txt
+
+# Ignore system/IDE files
+.DS_Store
+Thumbs.db
+node_modules/
+dist/
+build/
+logs/
+*.log
+
+# Ignore database dumps or sensitive exports
+*.sql
+*.sqlite
+*.bak
+
+# Ignore personal/editor config
+.vscode/
+*.swp

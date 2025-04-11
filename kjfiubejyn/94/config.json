@@ -1,0 +1,8 @@
+{
+    "aipath_host": "192.168.0.161",
+    "db_port": "6379",
+    "batch_size": "16",
+    "redis_key": "AIPaths",
+    "max_workers": "100",
+    "pre_process_address": "6001"
+}

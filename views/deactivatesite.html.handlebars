@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style>
+        body, .body-wrap {
+            width: 100% !important;
+            height: 100%;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background-color: #71bc37;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+        .header h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+        .content {
+            padding: 20px;
+            font-size: 16px;
+            color: #252525;
+        }
+        .content p {
+            margin-bottom: 15px;
+            line-height: 1.;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 20px;
+            margin: 20px 0;
+            color: #ffffff;
+            background-color: #e74c3c;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            text-align: center;
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #272727;
+            padding: 20px;
+            background-color: #8f3a3a;
+        }
+        .footer a {
+            color: #71bc37;
+            text-decoration: none;
+        }
+        .footer img {
+            margin: 20px auto;
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+
+<table class="body-wrap">
+    <tr>
+        <td>
+            <div class="container">
+                
+                <!-- Header -->
+                <div class="header">
+                    <h1>{{ billingcycle }}</h1>
+                </div>
+
+                <!-- Content -->
+                <div class="content">
+                    <h2>Dear {{ name }},</h2>
+                    <p>We have received a request to deactivate the following site:</p>
+                    <p><strong>Site Name:</strong> {{ product }}</p>
+                    
+                    <p>If you would like to proceed with the deactivation, please confirm by clicking the button below:</p>
+                    
+                    <!-- Deactivation Button -->
+                    <p style="text-align: center;">
+                        <a href="{{ link }}" class="button">Confirm Deactivation</a>
+                    </p>
+                    
+                    <p>If this request was not made by you or you need further assistance, please contact our support team.</p>
+                </div>
+
+              <div class="footer" style="display: flex; align-items: center; margin-top: 20px; padding: 15px 0; border-top: 1px solid #ffffff; border-radius: 8px; background-color: #f9f9f9; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+              <!-- Logo on the left -->
+           <div style="flex-shrink: 0; margin-left: 20px; margin-right: 20px;">
+            <a href="https://www.sporadasecure.com">
+            <img src="https://sporadasecure.com/sporadalogosqr.gif" alt="Sporada Secure Logo" style="width: 120px;"/>
+            </a>
+           </div>
+
+           <!-- Text on the right -->
+          <div style="flex-grow: 1; text-align: left;">
+            <p><em><strong>Sporada Secure Support Team</strong></em></p>
+            <p><strong>Sporada Secure India Private Limited</strong><br />
+            687/7, Trichy Road, Ramanathapuram,<br />
+            Coimbatore – 641045, Tamilnadu, India.</p>
+            <p>Visit our website: <a href="https://www.sporadasecure.com">www.sporadasecure.com</a></p>
+           </div>
+          </div>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

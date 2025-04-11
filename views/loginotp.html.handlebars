@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Sporada VMS Login OTP</title>
+</head>
+<body>
+  <h2>Hello {{name}}! </h2>
+  <p>You have request LOGIN OTP from Sporada VMS Application. Your Login OTP is <span style="text-decoration: underline; font-weight: bold; color: rgb(22, 87, 228); cursor: pointer;" onclick="copyToClipboard('{{link}}')">{{link}}</span>. Please donot share this otp to any one. </p>
+ <script>
+  function copyToClipboard(text) {
+    const tempInput = document.createElement('textarea');
+    tempInput.value = text;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    document.execCommand('copy');
+    document.body.removeChild(tempInput);
+    alert('OTP copied to clipboard');
+  }
+</script>
+</body>
+</html>

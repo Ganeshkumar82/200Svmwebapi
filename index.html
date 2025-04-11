@@ -1,0 +1,21 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Streaming IP Camera Nodejs</title>
+</head>
+<body>
+   <div>
+    <h1>welcome to sporadasecure</h1>
+       <canvas id="chanel1" width="auto" height="auto"></canvas>
+       <script type="text/javascript" src="jsmpeg.min.js"></script>
+       <script type="text/javascript">
+            var canvas = document.getElementById('chanel1');
+            //var websocket = new WebSocket("ws://127.0.0.1:9999");
+            var websocket = new WebSocket("ws://127.0.0.1:105");            
+            var player= new jsmpeg(websocket, {canvas:canvas, autoplay:true, loop:true})
+       </script>
+   </div>
+</body>
+</html> 

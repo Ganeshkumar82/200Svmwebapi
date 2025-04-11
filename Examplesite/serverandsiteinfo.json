@@ -1,0 +1,22 @@
+[
+    {
+        "SitecontrollerID": 74,
+        "Sitename": "Example site",
+        "Siteid": 74,
+        "ServerDBName": "ssipl_clouddb",
+        "ServerDBPort": "3306",
+        "SVMDBServerIP": "192.168.0.155",
+        "SVMDBUserName": "ssipl_serveradmin",
+        "SVMDBPassword": "Sporada@2014",
+        "SiteControllerpath": "Examplesite",
+        "SVMStoragePath": "",
+        "SVMArchivalPath": "",
+        "BackupDays": 25,
+        "Snapcount": 5,
+        "Site_status": "\\\\192.168.0.198\\Sharedfolder\\EventandActionEngine\\Alarmimages",
+        "SVMaipath": "\\\\192.168.0.198\\volumes",
+        "MqttIp": "192.168.0.58",
+        "MqttPort": "1883",
+        "ArchivalTime": "08:00:00"
+    }
+]
