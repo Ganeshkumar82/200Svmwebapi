@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
@@ -32,7 +32,6 @@
     "net": "^1.0.2",
     "node-cron": "^3.0.3",
     "node-fetch": "^3.3.2",
-    "node-libcurl": "^3.0.0",
     "node-rtsp-stream": "^0.0.9",
     "nodemailer": "^6.9.4",
     "nodemailer-express-handlebars": "^6.1.0",

@@ -297,16 +297,16 @@ router.get('/serve-image', (req, res) => {
   }
 });
 
-//FILTER THE VIDEO LOSS EVENT LIST FOR COMPANY 
-router.post('/videoloss',async function(req,res, next){
-  try{
-    res.json(await event.getVideolossEvent(req.query.page,req.body));
-  }
-  catch(err){
-    //console.error('Error while filtering the device event',err.message);    
-    next(err);
-  }
-});
+// //FILTER THE VIDEO LOSS EVENT LIST FOR COMPANY 
+// router.post('/videoloss',async function(req,res, next){
+//   try{
+//     res.json(await event.getVideolossEvent(req.query.page,req.body));
+//   }
+//   catch(err){
+//     //console.error('Error while filtering the device event',err.message);    
+//     next(err);
+//   }
+// });
 
 //GET THE CAMERA INFO FOR COMPANY 
 router.post('/getcamerainfo',async function(req,res, next){
