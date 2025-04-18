@@ -12319,21 +12319,21 @@ async function DashBoardCount(admin) {
       UNION ALL
       SELECT 'inactiveappserver' AS type, COUNT(*) AS count FROM applicationservermaster WHERE runningstatus = 0 AND deleted_flag = 0
       UNION ALL
-      SELECT 'activesitecon' AS type, COUNT(branch_id) AS count FROM branchmaster WHERE status = 1 AND deleted_flag = 0 AND sitecontroller_status = 1
+      SELECT 'activesitecon' AS type, COUNT(*) AS count FROM branchmaster WHERE status = 1 AND deleted_flag = 0 AND sitecontroller_status = 1
       UNION ALL
-      SELECT 'inactivesitecon' AS type, COUNT(branch_id) AS count FROM branchmaster WHERE status = 1 AND deleted_flag = 0 AND sitecontroller_status = 0
+      SELECT 'inactivesitecon' AS type, COUNT(*) AS count FROM branchmaster WHERE status = 1 AND deleted_flag = 0 AND sitecontroller_status = 0
       UNION ALL
-      SELECT 'activedevice' AS type, COUNT(device_id) AS count FROM devicemaster WHERE status = 1 AND deleted_flag = 0 AND runningstatus = 1
+      SELECT 'activedevice' AS type, COUNT(*) AS count FROM devicemaster WHERE status = 1 AND deleted_flag = 0 AND runningstatus = 1
       UNION ALL
-      SELECT 'inactivedevice' AS type, COUNT(device_id) AS count FROM devicemaster WHERE status = 1 AND deleted_flag = 0 AND runningstatus = 0
+      SELECT 'inactivedevice' AS type, COUNT(*) AS count FROM devicemaster WHERE status = 1 AND deleted_flag = 0 AND runningstatus = 0
       UNION ALL
-      SELECT 'activenotification' AS type, COUNT(notification_id) AS count FROM notificationmaster WHERE server_status = 1 AND deleted_flag = 0
+      SELECT 'activenotification' AS type, COUNT(*) AS count FROM notificationmaster WHERE server_status = 1 AND deleted_flag = 0
       UNION ALL
-      SELECT 'inactivenotification' AS type, COUNT(notification_id) AS count FROM notificationmaster WHERE server_status = 0 AND deleted_flag = 0
+      SELECT 'inactivenotification' AS type, COUNT(*) AS count FROM notificationmaster WHERE server_status = 0 AND deleted_flag = 0
       UNION ALL
-      SELECT 'activefile' AS type, COUNT(storagepath_id) AS count FROM storagepathmaster WHERE running_status = 1 AND deleted_flag = 0
+      SELECT 'activefile' AS type, COUNT(*) AS count FROM storagepathmaster WHERE running_status = 1 AND deleted_flag = 0
       UNION ALL
-      SELECT 'inactivefile' AS type, COUNT(storagepath_id) AS count FROM storagepathmaster WHERE running_status = 0 AND deleted_flag = 0;
+      SELECT 'inactivefile' AS type, COUNT(*) AS count FROM storagepathmaster WHERE running_status = 0 AND deleted_flag = 0;
     `);
 
     const counts = sql.reduce((acc, row) => {
