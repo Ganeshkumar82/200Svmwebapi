@@ -22,7 +22,7 @@ router.post("/create", async function (req, res, next) {
   }
 });
 //3. Getting customer organization list
-router.post("/getorganizationlist", async function (req, res, next) {
+router.post("/getorganizationlist", async function (req, res, next) { //API FUNCTION DOEST EXIST IN THE CUSTOMER SERVICE
   try {
     res.json(await customer.getOrganizationList(req.body));
   } catch (err) {

@@ -2571,7 +2571,7 @@ for (const event of data) {
 
   try {
     const folderImages = fs
-      .readdirSync(testFolder)
+      .readdirSync(testFolder) //use readdir read the directory aysnchronously.
       .map(file => {
         return FullPaththumb + '/' + file;
       });
@@ -2998,7 +2998,7 @@ async function IgnoreCameras(event){
       try{
      const [result] = await db.spcall(`CALL AddEventIgnoreCamera(?,?,?,?);`,[cameraId,querydata.ignoretype,querydata.starttime,querydata.endtime]);
       }catch(er){
-        console.error(`Error calling stored procedure for camera ID ${cameraId}:`, error);
+        console.error(`Error calling stored procedure for camera ID ${cameraId}:`, er); //mc - changed error -> er
       }
     }
     return helper.getSuccessResponse(true,"Camera's added successfully","",secret);
