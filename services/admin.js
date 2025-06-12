@@ -4837,6 +4837,20 @@ async function SiteModify(admin) {
     for (const siteId of siteIds) {
       switch (admin.status) {
         case "activate":
+          try {
+            const sql1 = await db.query(
+              `select sitecontroller_path from branchmaster where branch_id = ?`,
+              [siteId]
+            );
+            if (sql1.length > 0) {
+              const fullPath = sql1[0].sitecontroller_path;
+              const folderPath = await createFolder(fullPath);
+              await cpy.copy(config.sitecontrollerpath, folderPath);
+              await addsiteconfig(siteId);
+            }
+          } catch (er) {
+            console.error("Error Creating folder:", er);
+          }
           dbstatus = 1;
           break;
         case "deactivate":
@@ -5520,7 +5534,7 @@ async function Individuallist(admin) {
       );
     } else {
       data = await db.query(
-        `SELECT Customer_id,Customer_name,ccode,Email_id from,Customer_Logo customermaster where Site_type = 1 and status = 1 and deleted_flag =0 and Customer_type = 3 and Organization_id = 0;`
+        `SELECT Customer_id,Customer_name,ccode,Email_id,Customer_Logo from customermaster where Site_type = 1 and status = 1 and deleted_flag =0 and Customer_type = 3 and Organization_id = 0;`
       );
     }
     const code = true;
@@ -10815,7 +10829,7 @@ async function UpdateDeviceStartStop(admin) {
   } catch (er) {
     return helper.getErrorResponse(
       false,
-      "Internal error. Please contact Addminstration",
+      "Internal error. Please contact Adminstration",
       er,
       ""
     );
@@ -13609,6 +13623,23 @@ async function SiteDeactivate(admin) {
     const objectvalue = result[1][0];
     const status = objectvalue["@result"];
     console.log(`status ${status}`);
+    try {
+      const sql1 = await db.query(
+        `select sitecontroller_path from branchmaster where branch_id = ?`,
+        [admin.siteid]
+      );
+      if (sql1.length > 0) {
+        const fullPath = sql1[0].sitecontroller_path;
+        const parentDir = path.dirname(fullPath);
+        const lastFolder = path.basename(fullPath);
+        const folderToDelete = path.join(parentDir, lastFolder);
+        await fs.rm(folderToDelete, { recursive: true, force: true });
+
+        console.log(`Deleted folder: ${folderToDelete}`);
+      }
+    } catch (er) {
+      console.error("Error deleting folder:", er);
+    }
     if (status !== undefined && status !== null && status !== 0) {
       return `Site Deactivated successfully.`;
     } else {
@@ -13643,6 +13674,23 @@ async function SiteDeletes(admin) {
     const objectvalue = result[1][0];
     const status = objectvalue["@result"];
     console.log(`status ${status}`);
+    try {
+      const sql1 = await db.query(
+        `select sitecontroller_path from branchmaster where branch_id = ?`,
+        [admin.siteid]
+      );
+      if (sql1.length > 0) {
+        const fullPath = sql1[0].sitecontroller_path;
+        const parentDir = path.dirname(fullPath);
+        const lastFolder = path.basename(fullPath);
+        const folderToDelete = path.join(parentDir, lastFolder);
+        await fs.rm(folderToDelete, { recursive: true, force: true });
+
+        console.log(`Deleted folder: ${folderToDelete}`);
+      }
+    } catch (er) {
+      console.error("Error deleting folder:", er);
+    }
     if (status !== undefined && status !== null && status !== 0) {
       return `Site Deleted successfully.`;
     } else {
@@ -13704,6 +13752,232 @@ async function DemoSite(admin) {
       false,
       "Internal error. Please contact Administrator",
       er
+    );
+  }
+}
+
+//##############################################################################################################################################################################################
+//##############################################################################################################################################################################################
+//##############################################################################################################################################################################################
+
+async function addVehicleEntry(admin) {
+  try {
+    if (!admin.hasOwnProperty("eventname")) {
+      return helper.getErrorResponse(
+        false,
+        "Event name missing. Please provide the Event name",
+        "ADD VEHICLE ENTRY",
+        ""
+      );
+    }
+
+    if (!admin.hasOwnProperty("time")) {
+      return helper.getErrorResponse(
+        false,
+        "Time is missing. Please provide the Time",
+        "ADD VEHICLE ENTRY",
+        ""
+      );
+    }
+
+    if (!admin.hasOwnProperty("groupid")) {
+      return helper.getErrorResponse(
+        false,
+        "GroupID is missing. Please provide the GroupID",
+        "ADD VEHICLE ENTRY",
+        ""
+      );
+    }
+
+    if (!admin.hasOwnProperty("index")) {
+      return helper.getErrorResponse(
+        false,
+        "Index is missing. Please provide the Index",
+        "ADD VEHICLE ENTRY",
+        ""
+      );
+    }
+
+    if (!admin.hasOwnProperty("count")) {
+      return helper.getErrorResponse(
+        false,
+        "Count is missing. Please provide the Count",
+        "ADD VEHICLE ENTRY",
+        ""
+      );
+    }
+
+    if (!admin.hasOwnProperty("plate_number")) {
+      return helper.getErrorResponse(
+        false,
+        "Plate number is missing. Please provide the Plate number",
+        "ADD VEHICLE ENTRY",
+        ""
+      );
+    }
+
+    if (!admin.hasOwnProperty("plate_type")) {
+      return helper.getErrorResponse(
+        false,
+        "Plate type is missing. Please provide the Plate type",
+        "ADD VEHICLE ENTRY",
+        ""
+      );
+    }
+
+    if (!admin.hasOwnProperty("plate_color")) {
+      return helper.getErrorResponse(
+        false,
+        "Plate color is missing. Please provide the Plate color",
+        "ADD VEHICLE ENTRY",
+        ""
+      );
+    }
+
+    if (!admin.hasOwnProperty("vehicle_type")) {
+      return helper.getErrorResponse(
+        false,
+        "Vehicle type is missing. Please provide the Vehicle type",
+        "ADD VEHICLE ENTRY",
+        ""
+      );
+    }
+
+    if (!admin.hasOwnProperty("vehicle_color")) {
+      return helper.getErrorResponse(
+        false,
+        "Vehicle color is missing. Please provide the Vehicle color",
+        "ADD VEHICLE ENTRY",
+        ""
+      );
+    }
+
+    if (!admin.hasOwnProperty("vehicle_size")) {
+      return helper.getErrorResponse(
+        false,
+        "Vehicle size is missing. Please provide the Vehicle size",
+        "ADD VEHICLE ENTRY",
+        ""
+      );
+    }
+
+    if (!admin.hasOwnProperty("lanenumber")) {
+      return helper.getErrorResponse(
+        false,
+        "Lane number is missing. Please provide the Lane number",
+        "ADD VEHICLE ENTRY",
+        ""
+      );
+    }
+
+    if (!admin.hasOwnProperty("illegal_address")) {
+      return helper.getErrorResponse(
+        false,
+        "Illegal address is missing. Please provide the Illegal address",
+        "ADD VEHICLE ENTRY",
+        ""
+      );
+    }
+    const [sql] = await db.spcall1(
+      `CALL InsertANPRInfo(?,?,?,?,?,?,?,?,?,?,?,?,?,@p_id); select @p_id;`,
+      [
+        admin.time,
+        admin.eventname,
+        admin.groupid,
+        admin.index,
+        admin.count,
+        admin.plate_number,
+        admin.plate_color,
+        admin.plate_type,
+        admin.vehicle_type,
+        admin.vehicle_color,
+        admin.vehicle_size,
+        admin.lanenumber,
+        admin.illegal_address,
+      ]
+    );
+    const objectvalue = sql[1][0];
+    const entryid = objectvalue["@p_id"];
+    if (entryid != null && entryid != undefined) {
+      return helper.getSuccessResponse(true, "success", entryid);
+    } else {
+      return helper.getErrorResponse(
+        false,
+        "Error while adding the event",
+        "ADD VEHICLE ENTRY/EXIT"
+      );
+    }
+  } catch (error) {
+    return helper.getErrorResponse(
+      false,
+      "Unexpected error occurred",
+      error.message
+    );
+  }
+}
+
+//##############################################################################################################################################################################################
+//##############################################################################################################################################################################################
+//##############################################################################################################################################################################################
+
+async function UpdateVehiclePath(admin) {
+  try {
+    if (!admin.hasOwnProperty("id")) {
+      return helper.getErrorResponse(
+        false,
+        "Event id missing. Please provide the Event id",
+        "ADD VEHICLE ENTRY",
+        ""
+      );
+    }
+
+    if (!admin.hasOwnProperty("vehiclepath")) {
+      return helper.getErrorResponse(
+        false,
+        "Vehicle path missing. Please provide the Vehicle path",
+        "ADD VEHICLE ENTRY",
+        ""
+      );
+    }
+
+    if (!admin.hasOwnProperty("attachpath")) {
+      return helper.getErrorResponse(
+        false,
+        "Attach path missing. Please provide the Attach path",
+        "ADD VEHICLE ENTRY",
+        ""
+      );
+    }
+
+    if (!admin.hasOwnProperty("numberplatepath")) {
+      return helper.getErrorResponse(
+        false,
+        "Number plate path missing. Please provide the Number plate path",
+        "ADD VEHICLE ENTRY",
+        ""
+      );
+    }
+
+    const [sql] = await db.spcall1(
+      `CALL UpdateANPRPathsByID(?,?,?,?,@path_id); select @path_id;`,
+      [admin.id, admin.vehiclepath, admin.attachpath, admin.numberplatepath]
+    );
+    const objectvalue = sql[1][0];
+    const path = objectvalue["@path_id"];
+    if (path != null && path != undefined) {
+      return helper.getSuccessResponse(true, "success", path);
+    } else {
+      return helper.getErrorResponse(
+        false,
+        "Error while adding the event path",
+        "ADD VEHICLE ENTRY/EXIT"
+      );
+    }
+  } catch (error) {
+    return helper.getErrorResponse(
+      false,
+      "Unexpected error occurred",
+      error.message
     );
   }
 }
@@ -13835,4 +14109,6 @@ module.exports = {
   SiteDeactivate,
   SiteDeletes,
   DemoSite,
+  addVehicleEntry,
+  UpdateVehiclePath,
 };

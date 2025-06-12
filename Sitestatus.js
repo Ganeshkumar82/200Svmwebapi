@@ -10,7 +10,7 @@ async function fetchAndSendEmail() {
     const sql = await db.query(`
       SELECT branch_id, log_date, end_date 
       FROM demo_end 
-      WHERE status = 1 AND end_date = CURDATE() + INTERVAL 1 DAY and branch_id In(select branch_id from branchmaster where status = 1);
+      WHERE status = 1 AND mail_sent = 0 and branch_id In(select branch_id from branchmaster where status = 1);
     `);
 
     if (sql.length === 0) {

@@ -1382,4 +1382,21 @@ router.get("/demosite", async function (req, res, next) {
   }
 });
 
+router.post("/addvehicle", async function (req, res, next) {
+  try {
+    res.json(await admin.addVehicleEntry(req.body));
+  } catch (er) {
+    console.error(`Error while adding the Vehicle entry -> ${er.message}`);
+    next(er);
+  }
+});
+
+router.post("/updatevehiclepath", async function (req, res, next) {
+  try {
+    res.json(await admin.UpdateVehiclePath(req.body));
+  } catch (er) {
+    console.error(`Error while Updating the Vehicle path-> ${er.message}`);
+    next(er);
+  }
+});
 module.exports = router;

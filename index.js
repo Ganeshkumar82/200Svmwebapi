@@ -27,6 +27,7 @@ const GraphRouter = require("./routes/graph");
 const SecureRouter = require("./routes/secureshutter");
 const RedisRouter = require("./routes/redis");
 const VoipRouter = require("./routes/voip");
+const ImageRouter = require("./routes/images");
 
 const app = express();
 
@@ -66,7 +67,7 @@ app.use("/graph", GraphRouter);
 app.use("/secureshutter", SecureRouter);
 app.use("/redis", RedisRouter);
 app.use("/voipcall", VoipRouter);
-
+app.use("/images", ImageRouter);
 /* Error handler middleware */
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
